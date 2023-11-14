@@ -1,0 +1,20 @@
+name: Code Quality
+on: pull-request
+
+permissions:
+  security-events: write
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: pip install pylint
+
+      - name: Run code quality analysis
+        uses: advanced-security/python-lint-code-scanning-action@v1
+        with:
+          linter: pylint
